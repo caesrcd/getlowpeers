@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Downloading latest snapshot from Bitnodes..."
-mapfile -t bitnodes_peers < <(wget -qO- https://bitnodes.io/api/v1/snapshots/latest/ | jq -r '.nodes | keys[]')
+mapfile -t bitnodes_peers < <(wget --timeout=300 -qO- https://bitnodes.io/api/v1/snapshots/latest/ | jq -r '.nodes | keys[]')
 echo "[*] Total nodes in Bitnodes: ${#bitnodes_peers[@]}"
 bitnodes_index=0
 
